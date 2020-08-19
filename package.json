@@ -1,0 +1,32 @@
+{
+  "author": "Nikolay Ulyanov",
+  "dependencies": {
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0"
+  },
+  "description": "",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "license": "ISC",
+  "main": "index.js",
+  "name": "polymorphic_app_with_custom_redux",
+  "scripts": {
+    "build-client-dev": "cross-env NODE_ENV=development webpack --config webpack.config.client.js",
+    "build-client": "cross-env NODE_ENV=production webpack --config webpack.config.client.js",
+    "build-server": "cross-env NODE_ENV=production webpack --config webpack.config.server.js",
+    "start": "cross-env NODE_ENV=development babel-node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1"
+}
