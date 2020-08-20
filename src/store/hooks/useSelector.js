@@ -7,7 +7,7 @@ const defaultIsEqual = (a, b) => a === b;
 const useSelector = (selector, isEqual = defaultIsEqual) => {
   const store = React.useContext(Context);
 
-  const [, update] = React.useReducer(s => s + 1, 0);
+  const [, update] = React.useReducer((s) => s + 1, 0);
 
   const prevSelector = React.useRef();
   const prevStoreState = React.useRef();
@@ -31,20 +31,20 @@ const useSelector = (selector, isEqual = defaultIsEqual) => {
 
   React.useEffect(() => {
     const checkForUpdates = () => {
-      const newSelected = prevSelector.current(store.getState())
+      const newSelected = prevSelector.current(store.getState());
 
       if (isEqual(newSelected, prevSelectedState.current)) {
-        return
+        return;
       }
 
-      prevSelectedState.current = newSelected
+      prevSelectedState.current = newSelected;
 
-      update()
-    }
+      update();
+    };
 
     const unsubscribe = store.subscribe(checkForUpdates);
 
-    checkForUpdates()
+    checkForUpdates();
 
     return () => {
       unsubscribe();

@@ -4,7 +4,8 @@ const About = () => (
   <>
     <h1>About</h1>
     <p>
-      This is simple example of combination of SSR and SPA called polymorphic application
+      This is simple example of combination of SSR and SPA called polymorphic
+      application
     </p>
   </>
 );

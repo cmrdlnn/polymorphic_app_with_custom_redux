@@ -3,7 +3,7 @@ export const createStore = (reducer, initialStore = {}) => {
 
   const listeners = [];
 
-  const subscribe = fn => {
+  const subscribe = (fn) => {
     listeners.push(fn);
 
     return () => {
@@ -12,13 +12,13 @@ export const createStore = (reducer, initialStore = {}) => {
       if (index !== -1) {
         listeners.splice(index, 1);
       }
-    }
+    };
   };
 
-  const dispatch = action => {
+  const dispatch = (action) => {
     store = reducer(store, action);
 
-    listeners.forEach(listener => listener());
+    listeners.forEach((listener) => listener());
   };
 
   const getState = () => store;
@@ -29,14 +29,13 @@ export const createStore = (reducer, initialStore = {}) => {
     dispatch,
     getState,
     subscribe,
-  }
+  };
 };
 
 export const combineReducers = (reducers) => (store = {}, action) => {
-  const newStore = {};
   let changed = false;
 
-  for (const key in reducers) {
+  const newStore = Object.keys(reducers).reduce((memo, key) => {
     const reducer = reducers[key];
     const prevState = store[key];
 
@@ -47,11 +46,14 @@ export const combineReducers = (reducers) => (store = {}, action) => {
       changed = true;
     }
 
-    newStore[key] = changed ? newState : prevState;
-  }
+    // eslint-disable-next-line no-param-reassign
+    memo[key] = changed ? newState : prevState;
+
+    return memo;
+  }, {});
 
   return changed ? newStore : store;
-}
+};
 
 export { default as Provider } from './Provider';
 export { default as useDispatch } from './hooks/useDispatch';

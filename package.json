@@ -14,16 +14,46 @@
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
-  "license": "ISC",
-  "main": "index.js",
+  "engines": {
+    "node": "~12.18.3",
+    "npm": "~6.14.7"
+  },
+  "license": "MIT",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md,html}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --ext .js,.jsx,.ts,.tsx --fix --max-warnings 0",
+      "git add"
+    ]
+  },
+  "main": "build/index.js",
   "name": "polymorphic_app_with_custom_redux",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cmrdlnn/polymorphic_app_with_custom_redux"
+  },
   "scripts": {
-    "build-client-dev": "cross-env NODE_ENV=development webpack --config webpack.config.client.js",
     "build-client": "cross-env NODE_ENV=production webpack --config webpack.config.client.js",
+    "build-client-dev": "cross-env NODE_ENV=development webpack --config webpack.config.client.js",
     "build-server": "cross-env NODE_ENV=production webpack --config webpack.config.server.js",
     "start": "cross-env NODE_ENV=development babel-node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"

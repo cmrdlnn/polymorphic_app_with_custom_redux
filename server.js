@@ -3,7 +3,7 @@ import express from 'express';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router';
+import { StaticRouter } from 'react-router-dom';
 
 import { createStore, Provider } from './src/store';
 import reducers from './src/reducers';
@@ -26,7 +26,7 @@ express()
         <Provider store={store}>
           <App />
         </Provider>
-      </StaticRouter>
+      </StaticRouter>,
     );
 
     const status = context.status || 200;
@@ -37,7 +37,10 @@ express()
     response.write(ROOT_CLOSE);
     response.write(
       `<script>
-        window.__PRELOADED_STATE__ = ${JSON.stringify(store).replace(/</g, '\\u003c')}
+        window.__PRELOADED_STATE__ = ${JSON.stringify(store).replace(
+          /</g,
+          '\\u003c',
+        )}
       </script>`,
     );
     response.write(END);

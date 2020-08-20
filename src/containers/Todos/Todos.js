@@ -10,13 +10,14 @@ const Todos = () => {
   const dispatch = useDispatch();
   const todos = useSelector(getTodos);
 
-  const handleAddTodo = React.useCallback(payload => {
-    dispatch({ payload, type: 'ADD_TODO' });
-  }, [dispatch]);
-
-  return (
-    <TodosComponent onAddTodo={handleAddTodo} todos={todos} />
+  const handleAddTodo = React.useCallback(
+    (payload) => {
+      dispatch({ payload, type: 'ADD_TODO' });
+    },
+    [dispatch],
   );
-}
+
+  return <TodosComponent onAddTodo={handleAddTodo} todos={todos} />;
+};
 
 export default React.memo(Todos);
