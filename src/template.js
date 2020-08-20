@@ -12,8 +12,9 @@ const START = `
       <div id="root">
 `.trim();
 
+const ROOT_CLOSE = '</div>';
+
 const END = `
-      </div>
       <script src="/main.js"></script>
     </body>
   </html>
@@ -21,5 +22,6 @@ const END = `
 
 module.exports = {
   END,
+  ROOT_CLOSE,
   START,
 };

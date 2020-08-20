@@ -23,6 +23,8 @@ export const createStore = (reducer, initialStore = {}) => {
 
   const getState = () => store;
 
+  dispatch({ type: '@@INIT' });
+
   return {
     dispatch,
     getState,
@@ -30,7 +32,7 @@ export const createStore = (reducer, initialStore = {}) => {
   }
 };
 
-export const combineReducers = (reducers) => (store, action) => {
+export const combineReducers = (reducers) => (store = {}, action) => {
   const newStore = {};
   let changed = false;
 
@@ -52,21 +54,5 @@ export const combineReducers = (reducers) => (store, action) => {
 }
 
 export { default as Provider } from './Provider';
-
-// const connect = (mapStateToProps, mapDispatchToProps, mergeProps, options) => Wrapped => {
-//   const name = Wrapped.displayName || Wrapped.name || 'Component';
-//
-//   return class Wrapper extends React.PureComponent {
-//     static displayName = `Connect(${name})`;
-//
-//     componentDidMount() {
-//       subscribe
-//     }
-//
-//
-//
-//     render() {
-//       return React.component(component)
-//     }
-//   }
-// }
+export { default as useDispatch } from './hooks/useDispatch';
+export { default as useSelector } from './hooks/useSelector';

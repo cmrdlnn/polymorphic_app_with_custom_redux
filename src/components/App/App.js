@@ -2,8 +2,9 @@ import React from 'react';
 
 import { Route, Switch, Link } from 'react-router-dom';
 
+import Todos from '../../containers/Todos';
+
 import Home from '../Home';
-import Todos from '../Todos';
 import About from '../About';
 import NotFound from '../NotFound';
 
